@@ -406,8 +406,13 @@
     background: var(--bg);
     padding: 48px 40px;
     position: relative;
+    cursor: pointer;
     transition: background 0.4s;
     overflow: hidden;
+  }
+  .phase.is-active {
+    background: var(--card);
+    box-shadow: inset 0 0 0 1px rgba(201,146,58,0.22);
   }
   .phase::after {
     content: '';
@@ -892,30 +897,112 @@
   @media (max-width: 900px) {
     #certificate { padding: 80px 24px; }
     .cert-wrapper { grid-template-columns: 1fr; gap: 40px; }
+    .phase-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .phase-gallery img { height: 150px; }
   }
 
 
-  /* Phase image gallery */
+  /* Phase image carousel */
   .phase-gallery {
-    display: flex;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 8px;
     margin-top: 20px;
-    overflow: hidden;
+    padding: 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: #090909;
   }
   .phase-gallery img {
-    flex: 1;
-    min-width: 0;
-    width: 33.33%;
-    height: 140px;
+    width: 100%;
+    height: 160px;
     object-fit: cover;
     object-position: center;
+    display: block;
     border: 1px solid var(--border);
     border-radius: 2px;
     filter: grayscale(0.15) brightness(0.9);
     transition: filter 0.4s;
   }
-  .phase-gallery img:hover {
+  .phase-gallery:hover img {
     filter: grayscale(0) brightness(1);
+  }
+
+  /* Image lightbox */
+  .image-lightbox {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(4px);
+    z-index: 1200;
+    padding: 30px;
+  }
+  .image-lightbox.open {
+    display: flex;
+  }
+  .image-lightbox-img {
+    max-width: 95vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    border: 1px solid rgba(201,146,58,0.35);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    border-radius: 4px;
+    object-fit: contain;
+    background: #0a0a0a;
+  }
+  .image-lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,146,58,0.5);
+    background: rgba(8,8,8,0.8);
+    color: var(--gold);
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .image-lightbox-close:hover {
+    background: rgba(201,146,58,0.2);
+  }
+  .image-lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,146,58,0.5);
+    background: rgba(8,8,8,0.8);
+    color: var(--gold);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+  }
+  .image-lightbox-nav.prev { left: 20px; }
+  .image-lightbox-nav.next { right: 20px; }
+  .image-lightbox-counter {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--gold);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: rgba(8,8,8,0.75);
+    border: 1px solid rgba(201,146,58,0.35);
+    border-radius: 999px;
+    padding: 8px 14px;
   }
 
   /* Phase GIF */
@@ -1108,6 +1195,7 @@
       <div class="phase-number" style="color:#ff2b2b;">02</div>
       <span class="phase-icon">✏️</span>
       <h3 class="phase-title">Initial Sketches 
+      </h3>
       <div class="phase-tools">
         <span class="tool-badge">Concept Sketching</span>
         <span class="tool-badge">Proportional Studies</span>
@@ -1164,7 +1252,6 @@
       <div class="phase-number" style="color:#ff2b2b;">05</div>
       <span class="phase-icon">🔧</span>
       <h3 class="phase-title">Suspension &amp; <em>Steering Design</em></h3>
-      </p>
       <div class="phase-tools">
         <span class="tool-badge">Lotus Shark</span>
         <span class="tool-badge">Double Wishbone</span>
@@ -1196,9 +1283,9 @@
       <div class="phase-deliverable"><strong>Deliverable:</strong> 2 complete CAD prototypes with distinct roll cage configurations</div>
         <!-- ⭐ ADD THIS IMAGE GALLERY -->
  <div class="phase-gallery">
-  <img src="final.cad1.jpeg" alt="Reverse Engineering Image 1" onclick="openPreview(this.src)">
-  <img src="final.cad2.jpeg" alt="Reverse Engineering Image 2" onclick="openPreview(this.src)">
-  <img src="final.cad3.jpeg" alt="Reverse Engineering Image 3" onclick="openPreview(this.src)">
+  <img src="final.cad1.jpeg" alt="Final CAD prototype 1">
+  <img src="final.cad2.jpeg" alt="Final CAD prototype 2">
+  <img src="final.cad3.jpeg" alt="Final CAD prototype 3">
 </div>
     </div>
 
@@ -1445,6 +1532,14 @@
   </div>
 </footer>
 
+<div class="image-lightbox" id="imageLightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
+  <button class="image-lightbox-nav prev" id="imageLightboxPrev" type="button" aria-label="Previous image">‹</button>
+  <button class="image-lightbox-nav next" id="imageLightboxNext" type="button" aria-label="Next image">›</button>
+  <button class="image-lightbox-close" id="imageLightboxClose" type="button" aria-label="Close image preview">×</button>
+  <img class="image-lightbox-img" id="imageLightboxImg" src="" alt="Expanded preview">
+  <div class="image-lightbox-counter" id="imageLightboxCounter">1 / 1</div>
+</div>
+
 <style>
   .footer-contact {
     display: flex;
@@ -1526,6 +1621,128 @@
     });
   }, { threshold: 0.12 });
   reveals.forEach(r => observer.observe(r));
+
+  // Image lightbox
+  const imageLightbox = document.getElementById('imageLightbox');
+  const imageLightboxImg = document.getElementById('imageLightboxImg');
+  const imageLightboxClose = document.getElementById('imageLightboxClose');
+  const imageLightboxPrev = document.getElementById('imageLightboxPrev');
+  const imageLightboxNext = document.getElementById('imageLightboxNext');
+  const imageLightboxCounter = document.getElementById('imageLightboxCounter');
+  let lightboxImages = [];
+  let lightboxIndex = 0;
+
+  function updateImageLightbox() {
+    if (!imageLightboxImg || !lightboxImages.length) return;
+    const current = lightboxImages[lightboxIndex];
+    imageLightboxImg.src = current.src;
+    imageLightboxImg.alt = current.alt || 'Expanded preview';
+    if (imageLightboxCounter) {
+      imageLightboxCounter.textContent = `${lightboxIndex + 1} / ${lightboxImages.length}`;
+    }
+  }
+
+  function showPrevInLightbox() {
+    if (!lightboxImages.length) return;
+    lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+    updateImageLightbox();
+  }
+
+  function showNextInLightbox() {
+    if (!lightboxImages.length) return;
+    lightboxIndex = (lightboxIndex + 1) % lightboxImages.length;
+    updateImageLightbox();
+  }
+
+  function closeImageLightbox() {
+    if (!imageLightbox || !imageLightboxImg) return;
+    imageLightbox.classList.remove('open');
+    imageLightbox.setAttribute('aria-hidden', 'true');
+    imageLightboxImg.src = '';
+    lightboxImages = [];
+    lightboxIndex = 0;
+  }
+
+  function openImageLightbox(images, startIndex) {
+    if (!imageLightbox || !imageLightboxImg || !images.length) return;
+    lightboxImages = images;
+    lightboxIndex = startIndex;
+    updateImageLightbox();
+    imageLightbox.classList.add('open');
+    imageLightbox.setAttribute('aria-hidden', 'false');
+  }
+
+  if (imageLightbox && imageLightboxClose) {
+    imageLightboxClose.addEventListener('click', closeImageLightbox);
+    if (imageLightboxPrev) imageLightboxPrev.addEventListener('click', showPrevInLightbox);
+    if (imageLightboxNext) imageLightboxNext.addEventListener('click', showNextInLightbox);
+    imageLightbox.addEventListener('click', (event) => {
+      if (event.target === imageLightbox) {
+        closeImageLightbox();
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && imageLightbox.classList.contains('open')) {
+        closeImageLightbox();
+        return;
+      }
+      if (event.key === 'ArrowLeft' && imageLightbox.classList.contains('open')) {
+        showPrevInLightbox();
+        return;
+      }
+      if (event.key === 'ArrowRight' && imageLightbox.classList.contains('open')) {
+        showNextInLightbox();
+      }
+    });
+  }
+
+  // Clickable workflow phases
+  document.querySelectorAll('.phase').forEach((phase) => {
+    phase.tabIndex = 0;
+    phase.setAttribute('role', 'button');
+    phase.setAttribute('aria-pressed', 'false');
+
+    const togglePhase = () => {
+      const isActive = phase.classList.toggle('is-active');
+      phase.setAttribute('aria-pressed', String(isActive));
+    };
+
+    phase.addEventListener('click', (event) => {
+      if (event.target.closest('.phase-gallery button')) {
+        return;
+      }
+      if (event.target.closest('button, a')) {
+        return;
+      }
+      togglePhase();
+    });
+
+    phase.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        togglePhase();
+      }
+    });
+  });
+
+  // Phase image previews + lightbox carousel
+  document.querySelectorAll('.phase-gallery').forEach((gallery) => {
+    const images = Array.from(gallery.querySelectorAll('img'));
+    if (images.length <= 1) {
+      return;
+    }
+
+    const galleryImages = images.map((img) => ({ src: img.src, alt: img.alt }));
+
+    images.forEach((image, index) => {
+      image.loading = 'lazy';
+      image.style.cursor = 'zoom-in';
+      image.addEventListener('click', (event) => {
+        event.stopPropagation();
+        openImageLightbox(galleryImages, index);
+      });
+    });
+  });
 
   // Timeline progress — animate on scroll into view
   const timelineProgress = document.querySelector('.timeline-progress');
