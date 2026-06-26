@@ -280,7 +280,7 @@
   #brief {
     padding: 120px 60px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 80px;
     border-top: 1px solid var(--border);
   }
@@ -570,8 +570,8 @@
 
   .outcomes-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
     gap: 16px;
     margin-top: 60px;
   }
@@ -1072,7 +1072,7 @@
 
   <div class="hero-meta">
     <p class="hero-desc">
-      A documentation of my internship where I was entrusted with the complete design of a two-seater 4×2 Dune Buggy — from market research and initial sketches all the way to two fully-developed CAD prototypes, all delivered within one month.
+      End-to-end design of a 4×2 Dune Buggy — research to two full CAD prototypes — in 30 days.
     </p>
     <div class="hero-specs">
       <div class="spec-cell">
@@ -1106,16 +1106,10 @@
       OFF ROAD architecture
     </h2>
     <p class="brief-body">
-      I was entrusted with the complete design of a two-seater 4×2 Dune Buggy powered by a
-      250cc KTM Duke engine with chain drive. The brief demanded an off-road capable vehicle
-      with a proper double wishbone front suspension setup — designed from the ground up,
-      not adapted from an existing platform.
+      250cc KTM Duke, chain drive. Double wishbone suspension designed from scratch. No platform adaptation.
     </p>
     <p class="brief-body">
-     My scope encompassed the full product development lifecycle: from initial market research and reverse engineering to
-    ergonomic packaging in CATIA and multi-body dynamics in Lotus Shark. A critical phase involved the parallel development 
-    of two distinct roll cage configurations. By conducting a comparative load path analysis, I down-selected a final architecture
-    that optimized the strength-to-weight ratio while significantly reducing manufacturing complexity—all within an accelerated one-month delivery window.
+     Scope: market research → reverse engineering → CATIA ergonomics → Lotus Shark kinematics → SolidWorks chassis. Developed two roll cage configs, compared load paths, and down-selected the lighter, simpler architecture.
     </p>
     <div class="tag-list">
       <div class="tag active">SolidWorks CAD</div>
@@ -1127,31 +1121,7 @@
       <div class="tag active">Roll Cage Design</div>
     </div>
   </div>
-  <div class="brief-right reveal reveal-delay-2">
-    <div class="brief-card">
-      <div class="brief-card-label">Vehicle Type</div>
-      <div class="brief-card-value">Two-seater 4×2 Dune Buggy · Off-road recreational / competition</div>
-    </div>
-    <div class="brief-card">
-      <div class="brief-card-label">Powertrain</div>
-      <div class="brief-card-value">250cc KTM Duke Engine · Chain Drive · Rear-wheel drive</div>
-    </div>
-    <div class="brief-card">
-      <div class="brief-card-label">Suspension Spec</div>
-      <div class="brief-card-value">Double wishbone front · 10 inches wheel travel · Minimal camber gain · Damper optimised on lower arm</div>
-    </div>
-    <div class="brief-card">
-   <div class="brief-card-label">Deliverable</div>
-<div class="brief-card-value">
-    <strong>Comprehensive design package delivered in 1 month, including:</strong>
-    <ul style="margin-top: 8px; list-style-type: none; padding-left: 0; line-height: 1.5;">
-        <li>• Dual high-fidelity CAD roll cage concepts (Iterations A and B)</li>
-        <li>• Load path and structural efficiency evaluation</li>
-        <li>• Final down-selection documentation with rationalization for complexity reduction and material optimization</li>
-    </ul>
-</div>
-    </div>
-  </div>
+
 </section>
 
 <!-- WORKFLOW -->
@@ -1161,7 +1131,7 @@
       <div class="section-label">02 — What I Worked On</div>
       <h2 class="workflow-title">Key<br><span>Milestones</span></h2>
     </div>
-    <p class="workflow-subtitle">Six major phases across one month — each built directly on the last, from raw research to two fully-resolved CAD prototypes.</p>
+    <p class="workflow-subtitle">Six phases, one month. Each phase fed directly into the next.</p>
   </div>
 
 
@@ -1352,32 +1322,6 @@
   <div class="section-label reveal">04 — What I Delivered</div>
 
   <div class="outcomes-grid">
-
-    <div class="outcome-card reveal">
-      <div class="outcome-card-bg">🔧</div>
-      <div class="outcome-eyebrow">Technical Achievement</div>
-      <h3 class="outcome-title" style="font-size:1.3rem">Suspension Geometry Mastery</h3>
-      <p class="outcome-body">
-        Used Lotus Shark to iterate double wishbone geometry until camber gain across
-        10 inches of travel was minimised. Damper position on the lower arm was validated
-        for optimal motion ratio — not placed by gut feel.
-      </p>
-    </div>
-
-    <div class="outcome-card reveal reveal-delay-1">
-      <div class="outcome-card-bg">⚡</div>
-      <div class="outcome-eyebrow">Process Achievement</div>
-      <h3 class="outcome-title" style="font-size:1.3rem">Full Cycle in 30 Days</h3>
-      <p class="outcome-body">
-        Market research to final prototype architecture development within a single month
-        demonstrated the ability to manage parallel design workstreams — CATIA ergonomic
-        packaging, Lotus Shark suspension kinematic optimisation, and SolidWorks chassis
-        development all progressing simultaneously while early roll cage concepts were
-        evaluated and converged into a structurally efficient final design.
-      </p>
-    </div>
-
-  </div>
 </section>
 
 <!-- REFLECTIONS -->
@@ -1390,8 +1334,7 @@
       learned.
     </h2>
     <p class="ref-sub">
-      A month of complete ownership is a different kind of education. These are the
-      four things that stuck.
+      One month. Full ownership. Four key lessons.
     </p>
   </div>
 
@@ -1401,10 +1344,7 @@
       <div>
         <div class="learning-title">Suspension geometry is never obvious — simulate first</div>
         <p class="learning-body">
-          My initial double wishbone geometry looked correct on paper but produced
-          excessive camber gain at full bump. Only Lotus Shark revealed the issue before
-          it was committed to CAD. The lesson: analysis tools aren't a validation step
-          at the end — they're a design tool throughout. Simulate early, iterate often.
+          Initial geometry looked right on paper. Lotus Shark caught excessive camber gain at full bump before it hit CAD. Simulation is a design tool — not a validation step.
         </p>
       </div>
     </div>
@@ -1413,10 +1353,7 @@
       <div>
         <div class="learning-title">Reverse engineering teaches more than textbooks</div>
         <p class="learning-body">
-          Studying real vehicles — measuring, photographing, and questioning every
-          design decision — gave me context that no lecture ever could. Understanding
-          why existing dune buggies made specific geometry choices made my own decisions
-          more deliberate and defensible.
+          Measuring and photographing real vehicles gave design intent that textbooks don't. Understanding why choices were made made my own decisions defensible.
         </p>
       </div>
     </div>
@@ -1425,10 +1362,7 @@
       <div>
         <div class="learning-title">Parallel workstreams are the only way to hit tight deadlines</div>
         <p class="learning-body">
-          One month for a complete vehicle design forced me to run CATIA ergonomics,
-          Lotus Shark suspension iterations, and SolidWorks assembly simultaneously —
-          not sequentially. Learning to keep partial models consistent across tools
-          while each was still evolving was the hardest and most valuable skill I took away.
+          CATIA, Lotus Shark, and SolidWorks ran simultaneously — not sequentially. Keeping partial models consistent across tools while each was still evolving was the hardest skill.
         </p>
       </div>
     </div>
@@ -1437,7 +1371,7 @@
       <div>
         <div class="learning-title">Data-driven down-selection beats aesthetic preference</div>
         <p class="learning-body">
-         Presenting two distinct roll cage configurations allowed for a rigorous comparative analysis of load path efficiency. By evaluating Iteration A against Iteration B, the team could objectively select the design that offered the highest structural rigidity with the lowest material consumption. This taught me that the "best" design isn't the most complex one, but the one that achieves the safety factor with the most elegant and manufacturable load path.
+         Two roll cage configs. Load path analysis of Iteration A vs B. The winner wasn't the heavier one — it was the one that hit the safety factor with the cleanest geometry.
         </p>
       </div>
     </div>
