@@ -209,7 +209,7 @@
   }
   .hero-specs {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 0;
     border: 1px solid var(--border);
   }
@@ -294,6 +294,16 @@
     color: var(--white);
   }
   .brief-heading em { color: var(--gold); font-style: italic; }
+  .brief-subhead {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--gold-light);
+    letter-spacing: 0.02em;
+    margin-bottom: 32px;
+    padding-left: 18px;
+    border-left: 2px solid var(--gold);
+  }
   .brief-body {
     font-size: 0.78rem;
     line-height: 1.9;
@@ -705,6 +715,16 @@
     padding: 60px;
     border-top: 1px solid var(--border);
     display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .footer-back {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .footer-bottom {
+    display: flex;
     justify-content: space-between;
     align-items: center;
   }
@@ -761,7 +781,8 @@
     .phases { grid-template-columns: 1fr; }
     .outcomes-grid { grid-template-columns: 1fr; }
     .outcome-card.large { grid-row: span 1; }
-    footer { flex-direction: column; gap: 16px; text-align: center; padding: 40px 24px; }
+    footer { flex-direction: column; gap: 32px; text-align: center; padding: 40px 24px; }
+    .footer-bottom { flex-direction: column; gap: 16px; }
     .nav-links { display: none; }
     .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(8,8,8,0.97); z-index: 200; justify-content: center; align-items: center; gap: 32px; }
     .nav-links.open a { font-size: 1.2rem; }
@@ -884,6 +905,70 @@
     transition: filter 0.4s;
   }
   .cert-img-frame:hover img { filter: grayscale(0) brightness(1); }
+  /* ─── CERT BUTTON BLOCK ─── */
+  .cert-btn-block {
+    border: 1px solid var(--border);
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    background: var(--card);
+    position: relative;
+    overflow: hidden;
+  }
+  .cert-btn-block::before {
+    content: '📄';
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 6rem;
+    opacity: 0.06;
+    pointer-events: none;
+    filter: blur(1px);
+  }
+  .cert-btn-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .cert-btn-desc {
+    font-size: 0.74rem;
+    line-height: 1.85;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    max-width: 340px;
+  }
+  .cert-view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 28px;
+    border: 1px solid var(--gold);
+    background: transparent;
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s, box-shadow 0.25s;
+    position: relative;
+    z-index: 1;
+  }
+  .cert-view-btn:hover {
+    background: var(--gold);
+    color: #080808;
+    box-shadow: 0 0 28px rgba(201,146,58,0.35);
+  }
+  .cert-btn-icon {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
   .cert-meta {
     margin-top: 16px;
     display: flex;
@@ -968,6 +1053,10 @@
     font-size: 1.6rem;
     line-height: 1;
     cursor: pointer;
+    z-index: 10;
+    pointer-events: auto;
+    display: grid;
+    place-items: center;
   }
   .image-lightbox-close:hover {
     background: rgba(201,146,58,0.2);
@@ -1003,6 +1092,30 @@
     border: 1px solid rgba(201,146,58,0.35);
     border-radius: 999px;
     padding: 8px 14px;
+  }
+  .image-lightbox-heading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 80px 32px 24px;
+    background: linear-gradient(to bottom, rgba(8,8,8,0.92) 60%, transparent);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .image-lightbox-heading-phase {
+    font-size: 0.6rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 5px;
+  }
+  .image-lightbox-heading-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.3;
   }
 
   /* Phase GIF */
@@ -1049,7 +1162,7 @@
     <li><a href="#outcomes">Outcomes</a></li>
     <li><a href="#reflections">Reflections</a></li>
   </ul>
-  <div class="nav-tag">Design &amp; Dev Intern · 2025</div>
+  <div class="nav-tag">Design &amp; Dev Intern · Summer 2025</div>
   <button class="hamburger" id="hamburger" aria-label="Toggle menu">
     <span></span><span></span><span></span>
   </button>
@@ -1063,7 +1176,7 @@
     <div class="hero-img-overlay"></div>
   </div>
 
-  <div class="hero-eyebrow">Design &amp; Development Internship — Dune Buggy 4×2</div>
+  <div class="hero-eyebrow">Summer Internship after <em style="color:var(--gold-light);font-style:normal;">4th Sem</em> — Design &amp; Development · Dune Buggy 4×2</div>
 <h1 class="hero-title">
   Concept<br>
   to<br>
@@ -1072,7 +1185,7 @@
 
   <div class="hero-meta">
     <p class="hero-desc">
-      End-to-end design of a 4×2 Dune Buggy — research to two full CAD prototypes — in 30 days.
+      End-to-end design of a 4×2 Dune Buggy — <em style="color:var(--gold-light);font-style:normal;">concept to</em> one full <em style="color:var(--gold-light);font-style:normal;">CAD prototype</em> — in 30 days.
     </p>
     <div class="hero-specs">
       <div class="spec-cell">
@@ -1080,12 +1193,8 @@
         <div class="spec-label">Month</div>
       </div>
       <div class="spec-cell">
-        <span class="spec-val">2</span>
-        <div class="spec-label">Prototypes</div>
-      </div>
-      <div class="spec-cell">
-        <span class="spec-val">10"</span>
-        <div class="spec-label">Wheel Travel</div>
+        <span class="spec-val">1</span>
+        <div class="spec-label">Prototype</div>
       </div>
     </div>
   </div>
@@ -1099,17 +1208,18 @@
 <!-- BRIEF -->
 <section id="brief">
   <div class="brief-left reveal">
-    <div class="section-label">01 — The Project</div>
+    <div class="section-label">01 — The Problem</div>
     <h2 class="brief-heading">
-      END to END <br>
-      development of a <em>Custom</em><br>
-      OFF ROAD architecture
+      ARC Global had <em>zero</em><br>
+      products. Zero benchmark<br>
+      data. Zero prior R&amp;D.
     </h2>
+    <p class="brief-subhead">Make it exist first. Make it perfect later.</p>
     <p class="brief-body">
-      250cc KTM Duke, chain drive. Double wishbone suspension designed from scratch. No platform adaptation.
+      As the sole mechanical engineer intern — joining ARC Global during the summer break after <em style="color:var(--gold-light);font-style:normal;">4th semester</em> — the brief wasn't to optimize a vehicle — it was to prove one could exist at all. No legacy platform to adapt. No in-house data to anchor decisions.
     </p>
     <p class="brief-body">
-     Scope: market research → reverse engineering → CATIA ergonomics → Lotus Shark kinematics → SolidWorks chassis. Developed two roll cage configs, compared load paths, and down-selected the lighter, simpler architecture.
+      Priority: close the loop from <em style="color:var(--gold-light);font-style:normal;">concept to a real, manufacturable CAD prototype</em>. Refinement — weight, cost, performance — was deliberately deferred. It can only happen once something exists to refine.
     </p>
     <div class="tag-list">
       <div class="tag active">SolidWorks CAD</div>
@@ -1140,23 +1250,25 @@
     <div class="phase reveal">
   <div class="phase-number" style="color:#ff2b2b;">01</div>
   <span class="phase-icon">🔭</span>
-  <h3 class="phase-title">Market Research &amp; <em>Reverse Engineering</em></h3>
+  <h3 class="phase-title"><em>Reverse Engineering</em> a Chinese Product</h3>
 
+  <p class="phase-desc">
+    No physical vehicle. No spec sheet. Working entirely from images of a Chinese dune buggy sourced online, I systematically extracted all key dimensions — wheelbase, track width, seat position, roll cage proportions — using image scaling and reference-object estimation. This became the benchmark dataset for every downstream design decision.
+  </p>
 
   <div class="phase-tools">
-    <span class="tool-badge">Market Research</span>
-    <span class="tool-badge">Reverse Engineering</span>
-    <span class="tool-badge">Dimensional Analysis</span>
+    <span class="tool-badge">Image-Based RE</span>
+    <span class="tool-badge">Dimensional Estimation</span>
+    <span class="tool-badge">Benchmarking</span>
   </div>
 
-  <!-- ⭐ ADD THIS IMAGE GALLERY -->
   <div class="phase-gallery">
     <img src="rev1.jpeg" alt="Reverse Engineering Image 1">
     <img src="rev2.png" alt="Reverse Engineering Image 2">
   </div>
 
   <div class="phase-deliverable">
-    <strong>Deliverable:</strong> Dimension spec sheet + feature requirements document
+    <strong>Deliverable:</strong> Benchmark dimension spec sheet derived from image analysis
   </div>
 </div>
 
@@ -1195,7 +1307,7 @@
     <img src="initial.cad1.jpeg" alt="initial CAD 1">
     <img src="initial.cad2.jpeg" alt="initial CAD 1">
   </div>
-        <div class="phase-deliverable"><strong>Deliverable:</strong> 2 complete CAD prototypes with distinct roll cage configurations</div>
+        <div class="phase-deliverable"><strong>Deliverable:</strong> Initial CAD prototype with roll cage layout established</div>
     </div>
 
 
@@ -1250,7 +1362,7 @@
         <span class="tool-badge">Assembly Management</span>
         <span class="tool-badge">Roll Cage Design</span>
       </div>
-      <div class="phase-deliverable"><strong>Deliverable:</strong> 2 complete CAD prototypes with distinct roll cage configurations</div>
+      <div class="phase-deliverable"><strong>Deliverable:</strong> 1 complete, manufacturable CAD prototype</div>
         <!-- ⭐ ADD THIS IMAGE GALLERY -->
  <div class="phase-gallery">
   <img src="final.cad1.jpeg" alt="Final CAD prototype 1">
@@ -1334,7 +1446,7 @@
       learned.
     </h2>
     <p class="ref-sub">
-      One month. Full ownership. Four key lessons.
+      One month. Full ownership. Two key lessons.
     </p>
   </div>
 
@@ -1342,36 +1454,18 @@
     <div class="learning-item reveal">
       <div class="learning-num">01</div>
       <div>
-        <div class="learning-title">Suspension geometry is never obvious — simulate first</div>
+        <div class="learning-title">Reverse engineering from images is a real methodology</div>
         <p class="learning-body">
-          Initial geometry looked right on paper. Lotus Shark caught excessive camber gain at full bump before it hit CAD. Simulation is a design tool — not a validation step.
+          With no physical access to the reference vehicle, all benchmark dimensions were extracted from online images — using scale estimation and reference objects. It forced precision in observation and made every downstream number defensible.
         </p>
       </div>
     </div>
     <div class="learning-item reveal reveal-delay-1">
       <div class="learning-num">02</div>
       <div>
-        <div class="learning-title">Reverse engineering teaches more than textbooks</div>
-        <p class="learning-body">
-          Measuring and photographing real vehicles gave design intent that textbooks don't. Understanding why choices were made made my own decisions defensible.
-        </p>
-      </div>
-    </div>
-    <div class="learning-item reveal reveal-delay-2">
-      <div class="learning-num">03</div>
-      <div>
         <div class="learning-title">Parallel workstreams are the only way to hit tight deadlines</div>
         <p class="learning-body">
           CATIA, Lotus Shark, and SolidWorks ran simultaneously — not sequentially. Keeping partial models consistent across tools while each was still evolving was the hardest skill.
-        </p>
-      </div>
-    </div>
-    <div class="learning-item reveal reveal-delay-3">
-      <div class="learning-num">04</div>
-      <div>
-        <div class="learning-title">Data-driven down-selection beats aesthetic preference</div>
-        <p class="learning-body">
-         Two roll cage configs. Load path analysis of Iteration A vs B. The winner wasn't the heavier one — it was the one that hit the safety factor with the cleanest geometry.
         </p>
       </div>
     </div>
@@ -1439,9 +1533,18 @@
     </div>
 
     <div class="cert-img-col reveal reveal-delay-2">
-      <div class="cert-img-frame">
-      <img src="Arc Certificate.png" alt="Internship Certificate">
+      <!-- Hidden image for lightbox pool — not displayed inline -->
+      <img src="Arc Certificate.png" alt="Internship Certificate" class="cert-hidden-img" style="display:none;">
+
+      <div class="cert-btn-block">
+        <div class="cert-btn-eyebrow">Internship Completion Certificate</div>
+        <p class="cert-btn-desc">Issued by ARC Global upon completion of the 30-day Dune Buggy Design &amp; Development internship.</p>
+        <button class="cert-view-btn" id="viewCertBtn" type="button">
+          <span class="cert-btn-icon">📄</span>
+          View Certificate
+        </button>
       </div>
+
       <div class="cert-meta">
         <div>Issued by <span>ARC Global</span></div>
         <div>Authorized · <span>15/08/2025</span></div>
@@ -1455,21 +1558,66 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-brand">DUNE<span> Buggy</span></div>
-  <div class="footer-info">
-    Design &amp; Development Intern Portfolio<br>
-    250cc KTM Duke · Double Wishbone · Chain Drive · 2 CAD Prototypes<br><br>
-    <div class="footer-contact">
-      <span class="contact-link">📧 arpit.malik.ug23@nsut.ac.in</span>
-      <span class="contact-link">📞 +91 7056470711</span>
+  <div class="footer-back">
+    <a class="back-btn" href="https://arpitmalik711.github.io/Vehicle_system_development_engineer/#projects">
+      <span class="back-btn-arrow">←</span>
+      Back to Projects
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-brand">DUNE<span> Buggy</span></div>
+    <div class="footer-info">
+      Design &amp; Development Intern Portfolio · Summer 2025 (Post 4th Sem)<br>
+      250cc KTM Duke · Double Wishbone · Chain Drive · 1 CAD Prototype
+      <div class="footer-contact">
+        <a class="contact-link" href="mailto:arpit.malik.ug23@nsut.ac.in">
+          <span class="contact-label">Email</span>
+          <span class="contact-val">arpit.malik.ug23@nsut.ac.in</span>
+        </a>
+        <a class="contact-link" href="tel:+917056470711">
+          <span class="contact-label">Mobile</span>
+          <span class="contact-val">+91 70564 70711</span>
+        </a>
+      </div>
     </div>
   </div>
 </footer>
+
+<style>
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 28px;
+    border: 1px solid var(--gold);
+    background: var(--gold-dim);
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.25s, color 0.25s, box-shadow 0.25s;
+  }
+  .back-btn:hover {
+    background: var(--gold);
+    color: #080808;
+    box-shadow: 0 0 28px rgba(201,146,58,0.35);
+  }
+  .back-btn-arrow {
+    font-size: 1rem;
+    transition: transform 0.3s;
+  }
+  .back-btn:hover .back-btn-arrow {
+    transform: translateX(-4px);
+  }
 
 <div class="image-lightbox" id="imageLightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
   <button class="image-lightbox-nav prev" id="imageLightboxPrev" type="button" aria-label="Previous image">‹</button>
   <button class="image-lightbox-nav next" id="imageLightboxNext" type="button" aria-label="Next image">›</button>
   <button class="image-lightbox-close" id="imageLightboxClose" type="button" aria-label="Close image preview">×</button>
+  <div class="image-lightbox-heading" id="imageLightboxHeading"></div>
   <img class="image-lightbox-img" id="imageLightboxImg" src="" alt="Expanded preview">
   <div class="image-lightbox-counter" id="imageLightboxCounter">1 / 1</div>
 </div>
@@ -1477,22 +1625,38 @@
 <style>
   .footer-contact {
     display: flex;
-    gap: 30px;
-    justify-content: center;
+    gap: 20px;
+    justify-content: flex-end;
     flex-wrap: wrap;
-    margin-top: 12px;
+    margin-top: 20px;
   }
-
   .contact-link {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #00ffcc;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 14px 22px;
+    border: 1px solid var(--border);
     text-decoration: none;
-    letter-spacing: 1px;
-    border: 2px solid #00ffcc;
-    padding: 10px 22px;
-    border-radius: 8px;
-    cursor: default;                         /* ✅ no pointer cursor */
+    text-align: right;
+    transition: border-color 0.3s, background 0.3s;
+    background: transparent;
+  }
+  .contact-link:hover {
+    border-color: rgba(201,146,58,0.4);
+    background: var(--gold-dim);
+  }
+  .contact-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .contact-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--white);
   }
 </style>
 
@@ -1556,101 +1720,121 @@
   }, { threshold: 0.12 });
   reveals.forEach(r => observer.observe(r));
 
-  // Image lightbox
-  const imageLightbox = document.getElementById('imageLightbox');
-  const imageLightboxImg = document.getElementById('imageLightboxImg');
-  const imageLightboxClose = document.getElementById('imageLightboxClose');
-  const imageLightboxPrev = document.getElementById('imageLightboxPrev');
-  const imageLightboxNext = document.getElementById('imageLightboxNext');
+  // ─── GLOBAL LIGHTBOX ───────────────────────────────────────────────────────
+  const imageLightbox        = document.getElementById('imageLightbox');
+  const imageLightboxImg     = document.getElementById('imageLightboxImg');
+  const imageLightboxClose   = document.getElementById('imageLightboxClose');
+  const imageLightboxPrev    = document.getElementById('imageLightboxPrev');
+  const imageLightboxNext    = document.getElementById('imageLightboxNext');
   const imageLightboxCounter = document.getElementById('imageLightboxCounter');
-  let lightboxImages = [];
-  let lightboxIndex = 0;
+  const imageLightboxHeading = document.getElementById('imageLightboxHeading');
 
-  function updateImageLightbox() {
-    if (!imageLightboxImg || !lightboxImages.length) return;
-    const current = lightboxImages[lightboxIndex];
-    imageLightboxImg.src = current.src;
-    imageLightboxImg.alt = current.alt || 'Expanded preview';
+  // Build the global image pool — store src, alt, phase number, and phase title
+  const allPageImages = [];
+
+  // 1) Every image inside a .phase-gallery — pull phase number + title from parent .phase
+  document.querySelectorAll('.phase-gallery img').forEach(img => {
+    const phase = img.closest('.phase');
+    const phaseNum   = phase ? (phase.querySelector('.phase-number') || {}).textContent || '' : '';
+    const phaseTitle = phase ? (phase.querySelector('.phase-title')  || {}).textContent || '' : '';
+    allPageImages.push({ src: img.src, alt: img.alt || '', phaseNum: phaseNum.trim(), title: phaseTitle.trim() });
+  });
+
+  // 2) Any .phase-gif images
+  document.querySelectorAll('.phase-gif img').forEach(img => {
+    const phase = img.closest('.phase');
+    const phaseNum   = phase ? (phase.querySelector('.phase-number') || {}).textContent || '' : '';
+    const phaseTitle = phase ? (phase.querySelector('.phase-title')  || {}).textContent || '' : '';
+    allPageImages.push({ src: img.src, alt: img.alt || '', phaseNum: phaseNum.trim(), title: phaseTitle.trim() });
+  });
+
+  // 3) The certificate image
+  const certHiddenImg = document.querySelector('.cert-hidden-img');
+  let certGlobalIndex = -1;
+  if (certHiddenImg) {
+    certGlobalIndex = allPageImages.length;
+    allPageImages.push({ src: certHiddenImg.src, alt: certHiddenImg.alt || 'Internship Certificate', phaseNum: '06', title: 'Internship Completion Certificate' });
+  }
+
+  let lbIndex = 0;
+
+  function lbUpdate() {
+    if (!imageLightboxImg || !allPageImages.length) return;
+    const cur = allPageImages[lbIndex];
+    imageLightboxImg.src = cur.src;
+    imageLightboxImg.alt = cur.alt;
     if (imageLightboxCounter) {
-      imageLightboxCounter.textContent = `${lightboxIndex + 1} / ${lightboxImages.length}`;
+      imageLightboxCounter.textContent = `${lbIndex + 1} / ${allPageImages.length}`;
+    }
+    if (imageLightboxHeading) {
+      imageLightboxHeading.innerHTML = `
+        <div class="image-lightbox-heading-phase">Phase ${cur.phaseNum}</div>
+        <div class="image-lightbox-heading-title">${cur.title}</div>
+      `;
     }
   }
 
-  function showPrevInLightbox() {
-    if (!lightboxImages.length) return;
-    lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
-    updateImageLightbox();
-  }
+  function lbPrev() { lbIndex = (lbIndex - 1 + allPageImages.length) % allPageImages.length; lbUpdate(); }
+  function lbNext() { lbIndex = (lbIndex + 1) % allPageImages.length; lbUpdate(); }
 
-  function showNextInLightbox() {
-    if (!lightboxImages.length) return;
-    lightboxIndex = (lightboxIndex + 1) % lightboxImages.length;
-    updateImageLightbox();
-  }
-
-  function closeImageLightbox() {
-    if (!imageLightbox || !imageLightboxImg) return;
+  function lbClose() {
+    if (!imageLightbox) return;
     imageLightbox.classList.remove('open');
     imageLightbox.setAttribute('aria-hidden', 'true');
     imageLightboxImg.src = '';
-    lightboxImages = [];
-    lightboxIndex = 0;
   }
 
-  function openImageLightbox(images, startIndex) {
-    if (!imageLightbox || !imageLightboxImg || !images.length) return;
-    lightboxImages = images;
-    lightboxIndex = startIndex;
-    updateImageLightbox();
+  function lbOpen(startIndex) {
+    if (!imageLightbox || !allPageImages.length) return;
+    lbIndex = startIndex;
+    lbUpdate();
     imageLightbox.classList.add('open');
     imageLightbox.setAttribute('aria-hidden', 'false');
   }
 
-  if (imageLightbox && imageLightboxClose) {
-    imageLightboxClose.addEventListener('click', closeImageLightbox);
-    if (imageLightboxPrev) imageLightboxPrev.addEventListener('click', showPrevInLightbox);
-    if (imageLightboxNext) imageLightboxNext.addEventListener('click', showNextInLightbox);
-    imageLightbox.addEventListener('click', (event) => {
-      if (event.target === imageLightbox) {
-        closeImageLightbox();
-      }
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && imageLightbox.classList.contains('open')) {
-        closeImageLightbox();
-        return;
-      }
-      if (event.key === 'ArrowLeft' && imageLightbox.classList.contains('open')) {
-        showPrevInLightbox();
-        return;
-      }
-      if (event.key === 'ArrowRight' && imageLightbox.classList.contains('open')) {
-        showNextInLightbox();
-      }
+  if (imageLightbox) {
+    imageLightboxClose && imageLightboxClose.addEventListener('click', lbClose);
+    imageLightboxPrev  && imageLightboxPrev.addEventListener('click', lbPrev);
+    imageLightboxNext  && imageLightboxNext.addEventListener('click', lbNext);
+    imageLightbox.addEventListener('click', e => { if (e.target === imageLightbox) lbClose(); });
+    document.addEventListener('keydown', e => {
+      if (!imageLightbox.classList.contains('open')) return;
+      if (e.key === 'Escape')      { lbClose(); }
+      else if (e.key === 'ArrowLeft')  { lbPrev(); }
+      else if (e.key === 'ArrowRight') { lbNext(); }
     });
   }
 
-  // Clickable workflow phases
+  // Make all phase-gallery images clickable → open at their global index
+  let globalImgCursor = 0;
+  document.querySelectorAll('.phase-gallery img').forEach(img => {
+    const idx = globalImgCursor++;
+    img.loading = 'lazy';
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', e => { e.stopPropagation(); lbOpen(idx); });
+  });
+
+  // Phase GIF images
+  let gifCursor = document.querySelectorAll('.phase-gallery img').length;
+  document.querySelectorAll('.phase-gif img').forEach(img => {
+    const idx = gifCursor++;
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', e => { e.stopPropagation(); lbOpen(idx); });
+  });
+
+  // Clickable workflow phases (keep existing toggle, but guard against image clicks)
   document.querySelectorAll('.phase').forEach((phase) => {
     phase.tabIndex = 0;
     phase.setAttribute('role', 'button');
     phase.setAttribute('aria-pressed', 'false');
-
     const togglePhase = () => {
       const isActive = phase.classList.toggle('is-active');
       phase.setAttribute('aria-pressed', String(isActive));
     };
-
     phase.addEventListener('click', (event) => {
-      if (event.target.closest('.phase-gallery button')) {
-        return;
-      }
-      if (event.target.closest('button, a')) {
-        return;
-      }
+      if (event.target.closest('.phase-gallery img, .phase-gif img, button, a')) return;
       togglePhase();
     });
-
     phase.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
@@ -1659,24 +1843,12 @@
     });
   });
 
-  // Phase image previews + lightbox carousel
-  document.querySelectorAll('.phase-gallery').forEach((gallery) => {
-    const images = Array.from(gallery.querySelectorAll('img'));
-    if (images.length <= 1) {
-      return;
-    }
-
-    const galleryImages = images.map((img) => ({ src: img.src, alt: img.alt }));
-
-    images.forEach((image, index) => {
-      image.loading = 'lazy';
-      image.style.cursor = 'zoom-in';
-      image.addEventListener('click', (event) => {
-        event.stopPropagation();
-        openImageLightbox(galleryImages, index);
-      });
-    });
-  });
+  // "View Certificate" button → open lightbox at cert's global index
+  const viewCertBtn = document.getElementById('viewCertBtn');
+  if (viewCertBtn && certGlobalIndex >= 0) {
+    viewCertBtn.addEventListener('click', () => lbOpen(certGlobalIndex));
+  }
+  // ───────────────────────────────────────────────────────────────────────────
 
   // Timeline progress — animate on scroll into view
   const timelineProgress = document.querySelector('.timeline-progress');
